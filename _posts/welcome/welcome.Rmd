@@ -1,0 +1,106 @@
+---
+title: "Blog 1: Switzerland's COVID-19 numbers"
+description: |
+  A look into the coronavirus statistics in Switzerland.
+author:
+  - name: Justin Thomas 
+    affiliation: ETC5523, Monash University
+    affiliation_url: https://cwd.numbat.space/
+date: 09-03-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(gridExtra)
+library(plotly)
+library(readr)
+library(DT)
+
+# Learn more about creating blogs with Distill at:
+# https://rstudio.github.io/distill/blog.html
+
+```
+
+# Prelude
+
+Switzerland has been battling the Coronavirus ever since it rocked the beautiful moutaineous region in the EU. In this blog, we take a further look into the magnitude of the country's Covid-19 numbers.
+
+# Data Description
+
+```{r}
+deaths <- read_csv("deaths.csv")
+```
+
+```{r}
+countries <- read_csv("country-list.csv")
+```
+
+```{r}
+infections <- read_csv("infections.csv")
+```
+
+```{r}
+death_case <- read_csv("deaths-cases.csv")
+```
+
+The data used in this blog contains records for the number of new daily cases and deaths as well as the cumulative number of deaths and cases from February 26 to August 29. 
+
+## Data source
+
+*Coronavirus: the situation in Switzerland*. Retrieved August 30, 2020, from https://www.swissinfo.ch/eng/covid-19_coronavirus--the-situation-in-switzerland/45592192
+
+
+# Analysis
+
+Table \@ref(fig:deaths-cases) will help you visualize the total deaths and cases. It is also interactive, so adjust the dates to get a better understanding of how the numbers from changing across different time periods.
+
+```{r deaths-cases, fig.cap="Cumulative deaths and cases from February 26 to August 28"}
+death_case <- death_case %>% rename(Date = date, 
+                      `Cumulative deaths` = Deaths,
+                      `Cumulative cases` = Cases)
+
+death_case$Date <- as.Date(death_case$Date)
+      
+death_case %>% datatable(filter = 'top') %>% 
+        formatStyle('Cumulative deaths', color = 'black', backgroundColor = 'yellow') %>%          formatStyle('Cumulative cases', color = 'black', backgroundColor = 'yellow') %>%           formatStyle('Date', color = 'white', backgroundColor = 'green')
+```
+
+
+Table \@ref(fig:summary-statistic) below displays the mean, minimum and maximum values for the daily new cases and deaths.
+
+```{r summary-statistic, fig.cap="Summary statistics of daily new deaths and infection cases"}
+infections <- infections %>% rename(Date = date,
+                      `New infections` = new.infections)
+
+infections$Date <- as.Date(infections$Date)
+
+summaryi <- infections %>% summarise(Mean = round(mean(`New infections`), digits = 0), Min = min(`New infections`), Max = max(`New infections`))
+
+summaryd <- deaths %>% summarise(Mean = round(mean(`New deaths`), digits = 0), Min = min(`New deaths`), Max = max(`New deaths`))
+
+infection_deaths <- bind_rows(summaryd, summaryi)
+
+rownames(infection_deaths) <- c("Daily deaths", "Daily infections")
+
+infection_deaths %>% datatable() %>% 
+    formatStyle('Mean', color = 'black', backgroundColor = 'yellow') %>% 
+    formatStyle('Min', color = 'black', backgroundColor = 'yellow') %>% 
+    formatStyle('Max', color = 'black', backgroundColor = 'yellow') 
+```
+
+
+Although new cases are being recorded at an average of 223 people a day, it is interesting to note that roughly 5% of all infected individuals die every day. 
+
+This is where you write your blog, the main content of what you want to share. It is embedded within a folder called "welcome" which is in a "_posts" folder. This is listed in the YAML parameter in the index.Rmd and what is shown in the main webpage.
+
+If you want to make multiple blogs, just copy this folder and put it in the "_posts" folder and rename it to what you want to write your new blog about.
+
+BUT ensure you knit the Rmd first before you click "build website", otherwise it won't appear on the webpage.
+
+
+

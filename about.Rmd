@@ -1,0 +1,14 @@
+---
+title: "About this blog"
+description: |
+  Some additional details about the blog
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Welcome to my blog! I have created and written this blog for a unit I am taking at Monash University; the ETC5523 (Communicating with data) unit. 
+
+In this blog you will find insightful analysis and graphics into many different real world topics. I hope you will enjoy this blog and find it useful!
+
