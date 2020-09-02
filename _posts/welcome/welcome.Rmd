@@ -94,13 +94,7 @@ infection_deaths %>% datatable() %>%
 ```
 
 
-Although new cases are being recorded at an average of 223 people a day, it is interesting to note that roughly 5% of all infected individuals die every day. 
-
-This is where you write your blog, the main content of what you want to share. It is embedded within a folder called "welcome" which is in a "_posts" folder. This is listed in the YAML parameter in the index.Rmd and what is shown in the main webpage.
-
-If you want to make multiple blogs, just copy this folder and put it in the "_posts" folder and rename it to what you want to write your new blog about.
-
-BUT ensure you knit the Rmd first before you click "build website", otherwise it won't appear on the webpage.
+Although new cases are being recorded at an average of 223 people a day, it is interesting to note that roughly 5% of all infected individuals die every day. Something more interesting about this is that...stay tuned for the next blog!
 
 
 
