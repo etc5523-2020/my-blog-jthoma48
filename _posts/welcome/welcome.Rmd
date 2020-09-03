@@ -28,7 +28,7 @@ library(DT)
 
 # Prelude
 
-Switzerland has been battling the Coronavirus ever since it rocked the beautiful moutaineous region in the EU. In this blog, we take a further look into the magnitude of the country's Covid-19 numbers.
+Switzerland has been battling the Coronavirus ever since it rocked the beautiful Alpine region in the EU. In this blog, we take a further look into the magnitude of the country's Covid-19 numbers.
 
 # Data Description
 
@@ -50,14 +50,14 @@ death_case <- read_csv("deaths-cases.csv")
 
 The data used in this blog contains records for the number of new daily cases and deaths as well as the cumulative number of deaths and cases from February 26 to August 29. 
 
-## Data source
+The data is sourced from:
 
-*Coronavirus: the situation in Switzerland*. Retrieved August 30, 2020, from https://www.swissinfo.ch/eng/covid-19_coronavirus--the-situation-in-switzerland/45592192
+Swissinfo.ch. (2020, August 31). *Coronavirus: the situation in Switzerland*. Retrieved August 30, 2020, from https://www.swissinfo.ch/eng/covid-19_coronavirus--the-situation-in-switzerland/45592192
 
 
 # Analysis
 
-Table \@ref(fig:deaths-cases) will help you visualize the total deaths and cases. It is also interactive, so adjust the dates to get a better understanding of how the numbers from changing across different time periods.
+Table \@ref(fig:deaths-cases) will help you visualize the total deaths and cases. It is also interactive, so adjust the dates to get a better understanding of how the numbers change across different time periods.
 
 ```{r deaths-cases, fig.cap="Cumulative deaths and cases from February 26 to August 28"}
 death_case <- death_case %>% rename(Date = date, 
@@ -94,7 +94,14 @@ infection_deaths %>% datatable() %>%
 ```
 
 
-Although new cases are being recorded at an average of 223 people a day, it is interesting to note that roughly 5% of all infected individuals die every day. Something more interesting about this is that...stay tuned for the next blog!
+Although new cases are being recorded at an average of 223 people a day, it is interesting to note that on average, roughly 5% of all infected individuals die every day. 5% may seem like a lot for average daily deaths, but this is about 11 deaths on average every day. When you consider this against other major European countries like France, Spain and Italy, it is far less and this low figure is a result of Switzerland's early response to the pandemic. Clare O'Dea (2020) reports that because of an early lockdown and an extensive testing, tracing and quarantine regime, the feared disaster of a traumatic death toll and overwhelmed hospitals never came to pass. 
 
+Furthermore, the fact that all Swiss residents were always free to go outside for exercise without any permit system like those imposed in France or Italy (Clare O'Dea, 2020) without significantly increasing case numbers and the death toll is a testament to how effective their safety measures were during the early phase of the pandemic.  
 
+Switzerland's proactive approach to getting testing done as soon as possible whilst also ensuring their people are given freedom of movement within the country and around EU has been well received by the citizens. This is perhaps why Switzerland was ranked the safest country in the world in June 2020 by Hong-Kong based Deep Knowledge Group (Clare O'Dea, 2020).
 
+# References
+
+Swissinfo.ch. (2020, August 31). *Coronavirus: the situation in Switzerland*. Retrieved August 30, 2020, from https://www.swissinfo.ch/eng/covid-19_coronavirus--the-situation-in-switzerland/45592192
+
+O'Dea, C. (2020, June 15). *What Switzerland did right in the battle against coronavirus*. Retrieved September 3, 2020, from https://www.marketwatch.com/story/what-switzerland-did-right-in-the-battle-against-coronavirus-2020-06-15
