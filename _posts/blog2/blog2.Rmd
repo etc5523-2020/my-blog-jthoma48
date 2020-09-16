@@ -63,7 +63,7 @@ Chua, H. (2020, September 16). *COVID-19 Singapore*. Retrieved September 12, 202
 
 Table \@ref(fig:deaths-cases) will help you visualize the total deaths and cases. It is also interactive, so adjust the dates to get a better understanding of how the numbers change across different time periods.
 
-```{r deaths-cases, fig.cap="Cumulative deaths and cases from February 26 to August 28"}
+```{r deaths-cases, eval=FALSE, fig.cap="Cumulative deaths and cases from February 26 to August 28"}
 death_case <- death_case %>% rename(Date = date, 
                       `Cumulative deaths` = Deaths,
                       `Cumulative cases` = Cases)
@@ -77,7 +77,7 @@ death_case %>% datatable(filter = 'top') %>%
 
 Table \@ref(fig:summary-statistic) below displays the mean, minimum and maximum values for the daily new cases and deaths.
 
-```{r summary-statistic, fig.cap="Summary statistics of daily new deaths and infection cases"}
+```{r summary-statistic, eval=FALSE, fig.cap="Summary statistics of daily new deaths and infection cases"}
 infections <- infections %>% rename(Date = date,
                       `New infections` = new.infections)
 

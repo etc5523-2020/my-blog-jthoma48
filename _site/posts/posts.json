@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/blog2/",
+    "title": "Blog 2: Singapore's COVID-19 numbers",
+    "description": "A look into the coronavirus statistics in Singapore.",
+    "author": [
+      {
+        "name": "Justin Thomas",
+        "url": {}
+      }
+    ],
+    "date": "2020-09-17",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-09-16T23:30:32+10:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/welcome/",
     "title": "Blog 1: Switzerland's COVID-19 numbers",
     "description": "A look into the coronavirus statistics in Switzerland.",
