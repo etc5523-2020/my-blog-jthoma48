@@ -1,19 +1,19 @@
 ---
-title: "Blog 1: Switzerland's COVID-19 numbers"
+title: "Blog 2: Singapore's COVID-19 numbers"
 description: |
-  A look into the coronavirus statistics in Switzerland.
+  A look into the coronavirus statistics in Singapore.
 author:
   - name: Justin Thomas 
     affiliation: ETC5523, Monash University
     affiliation_url: https://cwd.numbat.space/
-date: 09-03-2020
+date: 09-17-2020
 output:
   distill::distill_article:
     self_contained: false
 ---
 
 ```{r setup}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 library(tidyverse)
 library(gridExtra)
@@ -28,31 +28,35 @@ library(DT)
 
 # Prelude
 
-Switzerland has been battling the Coronavirus ever since it rocked the beautiful Alpine region in the EU. In this blog, we take a further look into the magnitude of the country's Covid-19 numbers.
+Singapore has received praise in its response to managing the Coronavirus pandemic. The small nation in South East Asia has started to see a dramatic decrease in cases over the recent weeks. In this blog, we take a further look into the trend of the country's COVID-19 cases, deaths and hospitalization numbers.
 
 # Data Description
 
 ```{r}
-deaths <- read_csv("deaths.csv")
+figures <- read_csv("covid_19_sg.csv")
+figures$date <- as.Date(figures$date)
 ```
 
-```{r}
-countries <- read_csv("country-list.csv")
-```
+The data used in this blog contains the following records from January 23 to September 12:
 
-```{r}
-infections <- read_csv("infections.csv")
-```
+- new daily cases
+- new daily deaths
+- cumulative deaths 
+- cumulative cases
+- daily discharged from hospital
+- cumulative discharged from hospital
+- ICU cases
+- general ward cases
+- discharged to isolation
+- isolation cases
+- cumulative cases who have completed isolation
+- daily imported cases
+- daily local transmission cases
 
-```{r}
-death_case <- read_csv("deaths-cases.csv")
-```
-
-The data used in this blog contains records for the number of new daily cases and deaths as well as the cumulative number of deaths and cases from February 26 to August 29. 
 
 The data is sourced from:
 
-Swissinfo.ch. (2020, August 31). *Coronavirus: the situation in Switzerland*. Retrieved August 30, 2020, from https://www.swissinfo.ch/eng/covid-19_coronavirus--the-situation-in-switzerland/45592192
+Chua, H. (2020, September 16). *COVID-19 Singapore*. Retrieved September 12, 2020, from https://data.world/hxchua/covid-19-singapore
 
 
 # Analysis
@@ -102,6 +106,5 @@ Switzerland's proactive approach to getting testing done as soon as possible whi
 
 # References
 
-Swissinfo.ch. (2020, August 31). *Coronavirus: the situation in Switzerland*. Retrieved August 30, 2020, from https://www.swissinfo.ch/eng/covid-19_coronavirus--the-situation-in-switzerland/45592192
+Chua, H. (2020, September 16). *COVID-19 Singapore*. Retrieved September 12, 2020, from https://data.world/hxchua/covid-19-singapore
 
-O'Dea, C. (2020, June 15). *What Switzerland did right in the battle against coronavirus*. Retrieved September 3, 2020, from https://www.marketwatch.com/story/what-switzerland-did-right-in-the-battle-against-coronavirus-2020-06-15
