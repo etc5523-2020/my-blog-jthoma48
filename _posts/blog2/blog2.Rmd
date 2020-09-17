@@ -61,6 +61,8 @@ Chua, H. (2020, September 16). *COVID-19 Singapore*. Retrieved September 12, 202
 
 # Analysis
 
+## Daily local transmission vs daily imported cases
+
 ```{r data-rename}
 figures <- figures %>% rename(Date = date, 
                       `Daily Confirmed` = daily_confirmed,
@@ -81,15 +83,22 @@ figures <- figures %>% rename(Date = date,
                       `Cumulative completed isolation` = total_completed_isolation_moh_report)
 ```
 
-```{r}
+```{r p1, fig.cap="Make up of daily local tranmission vs imported cases"}
 p1 <- figures %>% ggplot(aes(x = Date)) +
   geom_line(aes(y = `Daily Confirmed`), color = "red") +
   geom_col(aes(y = `Daily local transmission`), colour = "grey", alpha = 0.8) +
   geom_bar(aes(y = `Daily imported`), stat = "identity", position = "stack", colour = "blue") +
-  scale_x_date(date_breaks = "1 month", date_labels = c("September", "February", "March", "April", "May", "June", "July", "August"))
+  scale_x_date(date_breaks = "1 month", date_labels = c("September", "February", "March", "April", "May", "June", "July", "August")) +
+  ylab("No. of cases") +
+  xlab("Month") 
 
 ggplotly(p1)
 ```
+
+Figure \@ref(fig:p1) displays the trend of daily confirmed cases from February to September. 
+Daily confirmed cases incorporates both daily local transmission cases and daily imported cases. Thus, the graph also depicts this. At the start, we briefly see imported cases, shown as the small blue bars, as the only type of reported cases in Singapore. However after, Singapore shut it's doors to tourists and short-term visitors from March 24, 2020 (Grace Ho, 2020), the number of daily imported cases started to decrease. This is evident from the graph as the blue bars start to drop.
+
+However, local transmission cases follow an exact pattern as daily confirmed cases. As soon as imported cases spread its way around the Singaporean communities, it was only a matter of time before this resulted into local community spread. Thus, when the borders closed, the rest of the daily confirmed cases were a result of daily local transmission cases. The grey bars are an identical match to the red line (daily confirmed cases). A peak of 1,426 cases was recorded as daily local transmission on April 20, 2020 and this was the peak value for daily confirmed cases. Singapore saw a gradual decrease in their daily case numbers, but this lasted for only 10 weeks, before a second wave hit. The result of reopening their borders on June 17, 2020 (gov.sg, 2020) saw a surge in the daily imported cases which again spread into the local community. An uptick of imported cases occurred right around the end of June and saw another peak of 908 daily confirmed cases on August 5, 2020. Since then, Singapore has seen a much lower daily case count since April.
 
 
 ```{r dorms}
@@ -101,8 +110,31 @@ dorms <- figures %>% select(Date, `Daily local transmission`, `Local cases from 
 
 ```{r}
 dorms %>% ggplot(aes(x = Date)) +
-        geom_col(aes(y = Cases, fill = Type))
+        geom_col(aes(y = Cases, fill = Type), position = "stack") + 
+  scale_x_date(date_breaks = "1 month", date_labels = c("March", "April", "May", "June", "July", "August", "September"))
 ```
+
+
+
+```{r, eval=FALSE}
+hospital <- figures %>% filter(Date >= "2020-03-20") %>% select(Date, `ICU cases`, `General ward cases`, `In insolation cases`, total_hospital_discharged_moh_report) %>%
+      mutate(Month = month(Date, label = TRUE, abbr = FALSE))
+      #pivot_longer(cols = -c(Date,total_hospital_discharged_moh_report),
+                   #names_to = "Type",
+                   #values_to = "Cases")
+
+hospital2 <- hospital %>% group_by(Month) %>% summarise(ICU = sum(`ICU cases`),
+                                           General = sum(`General ward cases`),
+                                           Isolation = sum(`In insolation cases`))
+
+  
+
+```
+
+
+
+
+
 
 Although new cases are being recorded at an average of 223 people a day, it is interesting to note that on average, roughly 5% of all infected individuals die every day. 5% may seem like a lot for average daily deaths, but this is about 11 deaths on average every day. When you consider this against other major European countries like France, Spain and Italy, it is far less and this low figure is a result of Switzerland's early response to the pandemic. Clare O'Dea (2020) reports that because of an early lockdown and an extensive testing, tracing and quarantine regime, the feared disaster of a traumatic death toll and overwhelmed hospitals never came to pass. 
 
@@ -114,3 +146,7 @@ Switzerland's proactive approach to getting testing done as soon as possible whi
 
 Chua, H. (2020, September 16). *COVID-19 Singapore*. Retrieved September 12, 2020, from https://data.world/hxchua/covid-19-singapore
 
+gov.sg. (2020, September 9). *Updates to border measures for travellers entering Singapore*. Retrieved September 17, 2020, from
+https://www.gov.sg/article/updates-to-border-measures-for-travellers-entering-singapore
+
+Ho, G. (2020, March 24). *Coronavirus: An unprecedented Singapore border closure, in unprecedented times*. Retrieved September 17, 2020, from https://www.straitstimes.com/opinion/an-unprecedented-border-closure-in-unprecedented-times
