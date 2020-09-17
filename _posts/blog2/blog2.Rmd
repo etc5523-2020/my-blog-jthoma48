@@ -1,7 +1,7 @@
 ---
 title: "Blog 2: Singapore's COVID-19 numbers"
 description: |
-  A look into the coronavirus statistics in Singapore.
+  How compact dormitory housing became the reason for Singapore's rise in case numbers.
 author:
   - name: Justin Thomas 
     affiliation: ETC5523, Monash University
@@ -28,7 +28,7 @@ library(DT)
 
 # Prelude
 
-Singapore has received praise in its response to managing the Coronavirus pandemic. The small nation in South East Asia has started to see a dramatic decrease in cases over the recent weeks. In this blog, we take a further look into the trend of the country's COVID-19 cases, deaths and hospitalization numbers.
+Singapore has received praise in its response to managing the Coronavirus pandemic. However, the South East Asian nation has done little to accommodate the safety and well-being of foreign workers. In this blog, we take a further look into the trend of the country's COVID-19 cases, but more specifically how dormitory housing contributed to local transmission.
 
 # Data Description
 
@@ -83,20 +83,21 @@ figures <- figures %>% rename(Date = date,
                       `Cumulative completed isolation` = total_completed_isolation_moh_report)
 ```
 
-```{r p1, fig.cap="Make up of daily local tranmission vs imported cases"}
+```{r p1, fig.cap="Make up of daily local transmission vs imported cases"}
 p1 <- figures %>% ggplot(aes(x = Date)) +
   geom_line(aes(y = `Daily Confirmed`), color = "red") +
   geom_col(aes(y = `Daily local transmission`), colour = "grey", alpha = 0.8) +
   geom_bar(aes(y = `Daily imported`), stat = "identity", position = "stack", colour = "blue") +
   scale_x_date(date_breaks = "1 month", date_labels = c("September", "February", "March", "April", "May", "June", "July", "August")) +
   ylab("No. of cases") +
-  xlab("Month") 
+  xlab("Month") +
+  ggtitle("How local transmission and imported cases make up Singapore's daily confirmed cases")
 
 ggplotly(p1)
 ```
 
 Figure \@ref(fig:p1) displays the trend of daily confirmed cases from February to September. 
-Daily confirmed cases incorporates both daily local transmission cases and daily imported cases. Thus, the graph also depicts this. At the start, we briefly see imported cases, shown as the small blue bars, as the only type of reported cases in Singapore. However after, Singapore shut it's doors to tourists and short-term visitors from March 24, 2020 (Grace Ho, 2020), the number of daily imported cases started to decrease. This is evident from the graph as the blue bars start to drop.
+Daily confirmed cases incorporates both daily local transmission cases and daily imported cases. Thus, the graph also depicts this. At the start, we briefly see imported cases, shown as the small blue bars, as the only type of reported cases in Singapore. However after, Singapore shut it's doors to tourists and short-term visitors from March 24, 2020 (Ho, 2020), the number of daily imported cases started to decrease. This is evident from the graph as the blue bars start to drop.
 
 However, local transmission cases follow an exact pattern as daily confirmed cases. As soon as imported cases spread its way around the Singaporean communities, it was only a matter of time before this resulted into local community spread. Thus, when the borders closed, the rest of the daily confirmed cases were a result of daily local transmission cases. The grey bars are an identical match to the red line (daily confirmed cases). A peak of 1,426 cases was recorded as daily local transmission on April 20, 2020 and this was the peak value for daily confirmed cases. Singapore saw a gradual decrease in their daily case numbers, but this lasted for only 10 weeks, before a second wave hit. The result of reopening their borders on June 17, 2020 (gov.sg, 2020) saw a surge in the daily imported cases which again spread into the local community. An uptick of imported cases occurred right around the end of June and saw another peak of 908 daily confirmed cases on August 5, 2020. Since then, Singapore has seen a much lower daily case count since April.
 
@@ -108,13 +109,22 @@ dorms <- figures %>% select(Date, `Daily local transmission`, `Local cases from 
                               values_to = "Cases")
 ```
 
-```{r}
+```{r dorm-plot}
 dorms %>% ggplot(aes(x = Date)) +
         geom_col(aes(y = Cases, fill = Type), position = "stack") + 
   scale_x_date(date_breaks = "1 month", date_labels = c("March", "April", "May", "June", "July", "August", "September"))
 ```
 
 
+Figure \@ref(fig:dorm-plot) takes a closer look at the breakdown of local transmission cases reported in figure \@ref(fig:p1). Majority of the cases that were being transmitted locally are linked to outbreaks in dormitories. These dormitories are compact housing establishments in localised regions of Singapore that house migrant workers. The same distinct two peaks can be seen here as in figure \@ref(fig:p1). 
+
+The reason for such a spread among these foreign labor workforce is because they live in packed dormitories, making it almost impossible to follow social distancing guidelines (Cai and Lai, 2020). Hundreds of thousands of foreign workers have been quarantined in their cramped quarters, with testing among them turning up hundreds of new cases a day (Beach, 2020).
+
+Transient Workers Count Too criticized the government’s plan to quarantine such a large population together. The group compared the lockdown with situations on cruise ships in which cases multiplied uncontrollably even when passengers were kept to their rooms (Cai and Lai, 2020). Conditions have been appalling for these workers, (Beach, 2020) reports that up to 20 laborers are packed in a single room within dormitories that have often been the sites of previous outbreaks like tuberculosis.
+
+The Singapore government requires a minimum of 48 square feet of living space for each worker. Here is a typical layout of a 20-person dorm room.
+
+With living conditions like this, it's no wonder why cases have been increasing. The future for these migrant workers is grim.
 
 ```{r, eval=FALSE}
 hospital <- figures %>% filter(Date >= "2020-03-20") %>% select(Date, `ICU cases`, `General ward cases`, `In insolation cases`, total_hospital_discharged_moh_report) %>%
@@ -133,16 +143,13 @@ hospital2 <- hospital %>% group_by(Month) %>% summarise(ICU = sum(`ICU cases`),
 
 
 
-
-
-
-Although new cases are being recorded at an average of 223 people a day, it is interesting to note that on average, roughly 5% of all infected individuals die every day. 5% may seem like a lot for average daily deaths, but this is about 11 deaths on average every day. When you consider this against other major European countries like France, Spain and Italy, it is far less and this low figure is a result of Switzerland's early response to the pandemic. Clare O'Dea (2020) reports that because of an early lockdown and an extensive testing, tracing and quarantine regime, the feared disaster of a traumatic death toll and overwhelmed hospitals never came to pass. 
-
-Furthermore, the fact that all Swiss residents were always free to go outside for exercise without any permit system like those imposed in France or Italy (Clare O'Dea, 2020) without significantly increasing case numbers and the death toll is a testament to how effective their safety measures were during the early phase of the pandemic.  
-
-Switzerland's proactive approach to getting testing done as soon as possible whilst also ensuring their people are given freedom of movement within the country and around EU has been well received by the citizens. This is perhaps why Switzerland was ranked the safest country in the world in June 2020 by Hong-Kong based Deep Knowledge Group (Clare O'Dea, 2020).
-
 # References
+
+Beach, H. (2020, June 23). *Singapore Seemed to Have Coronavirus Under Control, Until Cases Doubled*. Retrieved September 17, 2020, from
+https://www.nytimes.com/2020/04/20/world/asia/coronavirus-singapore.html
+
+Cai, W., Lai, K. (2020, April 28). *Packed With Migrant Workers, Dormitories Fuel Coronavirus in Singapore*. Retrieved September 17, 2020 from
+https://www.nytimes.com/interactive/2020/04/28/world/asia/coronavirus-singapore-migrants.html
 
 Chua, H. (2020, September 16). *COVID-19 Singapore*. Retrieved September 12, 2020, from https://data.world/hxchua/covid-19-singapore
 
