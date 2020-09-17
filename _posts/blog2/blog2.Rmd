@@ -61,42 +61,48 @@ Chua, H. (2020, September 16). *COVID-19 Singapore*. Retrieved September 12, 202
 
 # Analysis
 
-Table \@ref(fig:deaths-cases) will help you visualize the total deaths and cases. It is also interactive, so adjust the dates to get a better understanding of how the numbers change across different time periods.
+```{r data-rename}
+figures <- figures %>% rename(Date = date, 
+                      `Daily Confirmed` = daily_confirmed,
+                      `Cumulative Confirmed` = cumulative_confirmed,
+                      `Daily discharged` = daily_discharged,
+                      `Cumulative discharged` = cumulative_discharged,
+                      `Discharge to isolation` = discharged_to_isolation,
+                      `Still hospitalised` = still_hospitalised,
+                      `Daily deaths` = daily_deaths,
+                      `Cumulative deaths` = cumulative_deaths,
+                      `Daily imported` = daily_imported,
+                      `Daily local transmission` = daily_local_transmission,
+                      `Local cases from dormitories` = local_cases_residing_in_dorms_moh_report,
+                      `Local cases not from dormitories` = local_cases_not_residing_in_doms_moh_report,
+                      `ICU cases` = intensive_care_unit_icu,
+                      `General ward cases` = general_wards_moh_report,
+                      `In insolation cases` = in_isolation_moh_report,
+                      `Cumulative completed isolation` = total_completed_isolation_moh_report)
+```
 
-```{r deaths-cases, eval=FALSE, fig.cap="Cumulative deaths and cases from February 26 to August 28"}
-death_case <- death_case %>% rename(Date = date, 
-                      `Cumulative deaths` = Deaths,
-                      `Cumulative cases` = Cases)
+```{r}
+p1 <- figures %>% ggplot(aes(x = Date)) +
+  geom_line(aes(y = `Daily Confirmed`), color = "red") +
+  geom_col(aes(y = `Daily local transmission`), colour = "grey", alpha = 0.8) +
+  geom_bar(aes(y = `Daily imported`), stat = "identity", position = "stack", colour = "blue") +
+  scale_x_date(date_breaks = "1 month", date_labels = c("September", "February", "March", "April", "May", "June", "July", "August"))
 
-death_case$Date <- as.Date(death_case$Date)
-      
-death_case %>% datatable(filter = 'top') %>% 
-        formatStyle('Cumulative deaths', color = 'black', backgroundColor = 'yellow') %>%          formatStyle('Cumulative cases', color = 'black', backgroundColor = 'yellow') %>%           formatStyle('Date', color = 'white', backgroundColor = 'green')
+ggplotly(p1)
 ```
 
 
-Table \@ref(fig:summary-statistic) below displays the mean, minimum and maximum values for the daily new cases and deaths.
-
-```{r summary-statistic, eval=FALSE, fig.cap="Summary statistics of daily new deaths and infection cases"}
-infections <- infections %>% rename(Date = date,
-                      `New infections` = new.infections)
-
-infections$Date <- as.Date(infections$Date)
-
-summaryi <- infections %>% summarise(Mean = round(mean(`New infections`), digits = 0), Min = min(`New infections`), Max = max(`New infections`))
-
-summaryd <- deaths %>% summarise(Mean = round(mean(`New deaths`), digits = 0), Min = min(`New deaths`), Max = max(`New deaths`))
-
-infection_deaths <- bind_rows(summaryd, summaryi)
-
-rownames(infection_deaths) <- c("Daily deaths", "Daily infections")
-
-infection_deaths %>% datatable() %>% 
-    formatStyle('Mean', color = 'black', backgroundColor = 'yellow') %>% 
-    formatStyle('Min', color = 'black', backgroundColor = 'yellow') %>% 
-    formatStyle('Max', color = 'black', backgroundColor = 'yellow') 
+```{r dorms}
+dorms <- figures %>% select(Date, `Daily local transmission`, `Local cases from dormitories`, `Local cases not from dormitories`) %>% 
+                pivot_longer(cols = -c(Date, `Daily local transmission`),
+                              names_to = "Type",
+                              values_to = "Cases")
 ```
 
+```{r}
+dorms %>% ggplot(aes(x = Date)) +
+        geom_col(aes(y = Cases, fill = Type))
+```
 
 Although new cases are being recorded at an average of 223 people a day, it is interesting to note that on average, roughly 5% of all infected individuals die every day. 5% may seem like a lot for average daily deaths, but this is about 11 deaths on average every day. When you consider this against other major European countries like France, Spain and Italy, it is far less and this low figure is a result of Switzerland's early response to the pandemic. Clare O'Dea (2020) reports that because of an early lockdown and an extensive testing, tracing and quarantine regime, the feared disaster of a traumatic death toll and overwhelmed hospitals never came to pass. 
 
