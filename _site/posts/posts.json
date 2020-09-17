@@ -2,7 +2,7 @@
   {
     "path": "posts/blog2/",
     "title": "Blog 2: Singapore's COVID-19 numbers",
-    "description": "A look into the coronavirus statistics in Singapore.",
+    "description": "How compact dormitory housing became the reason for Singapore's rise in case numbers.",
     "author": [
       {
         "name": "Justin Thomas",
@@ -11,8 +11,8 @@
     ],
     "date": "2020-09-17",
     "categories": [],
-    "preview": {},
-    "last_modified": "2020-09-16T23:30:32+10:00",
+    "preview": "posts/blog2/blog2_files/figure-html5/dorm-plot-1.png",
+    "last_modified": "2020-09-18T00:27:24+10:00",
     "input_file": {}
   },
   {
