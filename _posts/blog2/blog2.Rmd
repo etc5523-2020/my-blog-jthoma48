@@ -6,7 +6,7 @@ author:
   - name: Justin Thomas 
     affiliation: ETC5523, Monash University
     affiliation_url: https://cwd.numbat.space/
-date: 09-17-2020
+date: 09-18-2020
 output:
   distill::distill_article:
     self_contained: false
@@ -37,7 +37,7 @@ figures <- read_csv("covid_19_sg.csv")
 figures$date <- as.Date(figures$date)
 ```
 
-The data used in this blog contains coronavirus records from January 23 to September 12:
+The data used in this blog contains coronavirus records from January 23 to September 12.
 
 The data is sourced from:
 
@@ -89,7 +89,7 @@ ggplotly(p1)
 ```
 
 Figure \@ref(fig:p1) displays the trend of daily confirmed cases from February to September. 
-Daily confirmed cases incorporates both daily local transmission cases and daily imported cases. Thus, the graph also depicts this. At the start, we briefly see imported cases, shown as the small blue bars, as the only type of reported cases in Singapore. However after, Singapore shut it's doors to tourists and short-term visitors on March 24, 2020 (Ho, 2020), the number of daily imported cases started to decrease. This is evident from the graph as the blue bars start to drop.
+Daily confirmed cases incorporates both daily local transmission cases and daily imported cases. Thus, the graph also depicts this. At the start, we briefly see imported cases, shown as the small blue bars, as the only type of reported cases in Singapore. However after Singapore shut its doors to tourists and short-term visitors on March 24, 2020 (Ho, 2020), the number of daily imported cases started to decrease. This is evident from the graph as the blue bars start to drop.
 
 However, local transmission cases follow an exact pattern as daily confirmed cases. As soon as imported cases spread its way around the Singaporean communities, it was only a matter of time before this resulted into local community spread. Thus, when the borders closed, the rest of the daily confirmed cases (red line) were a result of daily local transmission cases (grey bars). These bars are an identical match to the red line. A peak of 1,426 cases was recorded as daily local transmission on April 20, 2020 and this was the peak value for daily confirmed cases. Singapore saw a gradual decrease in their daily case numbers, but this lasted for only 10 weeks before a second wave hit. The result of reopening their borders on June 17, 2020 (gov.sg, 2020) saw a surge in the daily imported cases which again spread into the local community. An uptick of imported cases occurred right around the end of June and saw another peak of 908 daily confirmed cases on August 5, 2020. Since then, Singapore has seen a much lower daily case count since April.
 
