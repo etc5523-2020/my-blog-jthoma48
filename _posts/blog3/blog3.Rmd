@@ -42,3 +42,18 @@ My app has an interactive interface, whereby any user can change input selection
 
 
 # Self Review
+
+## What I did well?
+
+When creating my app, I designed the tabs to be placed at the top of the website, this way the user can navigate easily across tabs after reading through the content. It is my opinion that having tabs at the top of the website helps a user as it is center aligned which compliments their eye level. Additionally, I've also given a brief introduction for each section so the user knows what to expect in that particular section. My map and line graphs cover the full width of the webpage so it is wide enough for the data to be understood properly. The line graphs are not crowded or squished. 
+
+Lastly, I have ensured that the heading for the line charts automatically update when a new country and/or a new date range is selected by the user. This helps the user understand what the data represents just by looking at the heading.
+
+## What can I improve on?
+
+Although I designed the charts and map to take up the full width of the webpage, this has compromised the flow of the content for one section. For example in the "Cases in Australia" section, initially the line graph is hidden. Because I set the map to take up the full width, the line graph relating to the confirmed cases for each Australian state appears below the map and is not visible right away. The user has to scroll down below the map to see this graph. This is something I can improve on. I should assign a specific value for the width of the map and line graph so they can both be easily seen. It would be have been a better user interface if I had displayed the line graph next to the map.
+
+I should include line breaks between text and the graphs so it doesn't seem so crowded.
+
+## Some things I'd like to add that is plausible
+
