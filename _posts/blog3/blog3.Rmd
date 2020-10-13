@@ -32,5 +32,13 @@ Peer review is often conducted on assignments to provide valuable, yet construct
 
 # Introducing my Shiny app
 
+The Shiny app I created is called "COVID-19 rattles the World" and the purpose of this app is to demonstrate how the coronavirus has impacted the world. Through line graphs, I have demonstrated how the distribution of confirmed cases and daily cases have varied from February - October. I also dedicated a section to focus on Australia and used a map to show how the cases and deaths differentiate across states.
+
+My app has an interactive interface, whereby any user can change input selections based on options I have provided so that they can enjoy a more hands-on experience! Some of the input selections on my app are:
+
+**Selection of states for the Australia section** : a user can select any of the 8 Australian states to see how the confirmed case count varies across states.
+**Selection of countries** : a user can select any country to visualize its distribution of cumulative cases and daily cases.
+**Selection of a date range** : a user can select a date range to see how case counts have changed during a specific time period in a particular country.
+
 
 # Self Review
