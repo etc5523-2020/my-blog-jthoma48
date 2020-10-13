@@ -1,12 +1,12 @@
 ---
-title: "Blog 1: Switzerland's COVID-19 numbers"
+title: "Blog 3: Self-reflection of my COVID-19 Shiny app"
 description: |
-  A look into the coronavirus statistics in Switzerland.
+  Reviewing my own Shiny app.
 author:
   - name: Justin Thomas 
     affiliation: ETC5523, Monash University
     affiliation_url: https://cwd.numbat.space/
-date: 09-03-2020
+date: 10-13-2020
 output:
   distill::distill_article:
     self_contained: false
@@ -28,80 +28,9 @@ library(DT)
 
 # Prelude
 
-Switzerland has been battling the Coronavirus ever since it rocked the beautiful Alpine region in the EU. In this blog, we take a further look into the magnitude of the country's Covid-19 numbers.
+Peer review is often conducted on assignments to provide valuable, yet constructive feedback to help one improve their learning and refine their skills. However, it is far more difficult for one to judge their own work and review it themselves, but this task is equally as important, if not more important as peer review. Thus, in this blog, you will read about my critique for my own work.
 
-# Data Description
-
-```{r}
-deaths <- read_csv("deaths.csv")
-```
-
-```{r}
-countries <- read_csv("country-list.csv")
-```
-
-```{r}
-infections <- read_csv("infections.csv")
-```
-
-```{r}
-death_case <- read_csv("deaths-cases.csv")
-```
-
-The data used in this blog contains records for the number of new daily cases and deaths as well as the cumulative number of deaths and cases from February 26 to August 29. 
-
-The data is sourced from:
-
-Swissinfo.ch. (2020, August 31). *Coronavirus: the situation in Switzerland*. Retrieved August 30, 2020, from https://www.swissinfo.ch/eng/covid-19_coronavirus--the-situation-in-switzerland/45592192
+# Introducing my Shiny app
 
 
-# Analysis
-
-Table \@ref(fig:deaths-cases) will help you visualize the total deaths and cases. It is also interactive, so adjust the dates to get a better understanding of how the numbers change across different time periods.
-
-```{r deaths-cases, fig.cap="Cumulative deaths and cases from February 26 to August 28"}
-death_case <- death_case %>% rename(Date = date, 
-                      `Cumulative deaths` = Deaths,
-                      `Cumulative cases` = Cases)
-
-death_case$Date <- as.Date(death_case$Date)
-      
-death_case %>% datatable(filter = 'top') %>% 
-        formatStyle('Cumulative deaths', color = 'black', backgroundColor = 'yellow') %>%          formatStyle('Cumulative cases', color = 'black', backgroundColor = 'yellow') %>%           formatStyle('Date', color = 'white', backgroundColor = 'green')
-```
-
-
-Table \@ref(fig:summary-statistic) below displays the mean, minimum and maximum values for the daily new cases and deaths.
-
-```{r summary-statistic, fig.cap="Summary statistics of daily new deaths and infection cases"}
-infections <- infections %>% rename(Date = date,
-                      `New infections` = new.infections)
-
-infections$Date <- as.Date(infections$Date)
-
-summaryi <- infections %>% summarise(Mean = round(mean(`New infections`), digits = 0), Min = min(`New infections`), Max = max(`New infections`))
-
-summaryd <- deaths %>% summarise(Mean = round(mean(`New deaths`), digits = 0), Min = min(`New deaths`), Max = max(`New deaths`))
-
-infection_deaths <- bind_rows(summaryd, summaryi)
-
-rownames(infection_deaths) <- c("Daily deaths", "Daily infections")
-
-infection_deaths %>% datatable() %>% 
-    formatStyle('Mean', color = 'black', backgroundColor = 'yellow') %>% 
-    formatStyle('Min', color = 'black', backgroundColor = 'yellow') %>% 
-    formatStyle('Max', color = 'black', backgroundColor = 'yellow') 
-```
-
-
-Although new cases are being recorded at an average of 223 people a day, it is interesting to note that on average, roughly 5% of all infected individuals die every day. 5% may seem like a lot for average daily deaths, but this is about 11 deaths on average every day. When you consider this against other major European countries like France, Spain and Italy, it is far less and this low figure is a result of Switzerland's early response to the pandemic. Clare O'Dea (2020) reports that because of an early lockdown and an extensive testing, tracing and quarantine regime, the feared disaster of a traumatic death toll and overwhelmed hospitals never came to pass. 
-
-Furthermore, the fact that all Swiss residents were always free to go outside for exercise without any permit system like those imposed in France or Italy (Clare O'Dea, 2020) without significantly increasing case numbers and the death toll is a testament to how effective their safety measures were during the early phase of the pandemic.  
-
-Switzerland's proactive approach to getting testing done as soon as possible whilst also ensuring their people are given freedom of movement within the country and around EU has been well received by the citizens. This is perhaps why Switzerland was ranked the safest country in the world in June 2020 by Hong-Kong based Deep Knowledge Group (Clare O'Dea, 2020).
-
-# References
-
-Swissinfo.ch. (2020, August 31). *Coronavirus: the situation in Switzerland*. Retrieved August 30, 2020, from https://www.swissinfo.ch/eng/covid-19_coronavirus--the-situation-in-switzerland/45592192
-
-O'Dea, C. (2020, June 15). *What Switzerland did right in the battle against coronavirus*. Retrieved September 3, 2020, from https://www.marketwatch.com/story/what-switzerland-did-right-in-the-battle-against-coronavirus-2020-06-15
+# Self Review
