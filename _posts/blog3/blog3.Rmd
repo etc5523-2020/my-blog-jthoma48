@@ -57,3 +57,6 @@ I should include line breaks between text and the graphs so it doesn't seem so c
 
 ## Some things I'd like to add that is plausible
 
+I would like to have add an option to display multiple countries for my table. Instead, the table only gives the user the option to display one country. By having multiple countries appear in the table, the user can make comparisons between countries.
+
+Additionally, I could include additional information, such as summary statistics to appear in the box when a user clicks on an Australian state as indicated by the blue button. 
