@@ -36,9 +36,9 @@ The Shiny app I created is called "COVID-19 rattles the World" and the purpose o
 
 My app has an interactive interface, whereby any user can change input selections based on options I have provided so that they can enjoy a more hands-on experience! Some of the input selections on my app are:
 
-**Selection of states for the Australia section** : a user can select any of the 8 Australian states to see how the confirmed case count varies across states.
-**Selection of countries** : a user can select any country to visualize its distribution of cumulative cases and daily cases.
-**Selection of a date range** : a user can select a date range to see how case counts have changed during a specific time period in a particular country.
+  **Selection of states for the Australia section** : a user can select any of the 8 Australian    states to see how the confirmed case count varies across states.
+  **Selection of countries** : a user can select any country to visualize its distribution of      cumulative cases and daily cases.
+  **Selection of a date range** : a user can select a date range to see how case counts have       changed during a specific time period in a particular country.
 
 
 # Self Review
