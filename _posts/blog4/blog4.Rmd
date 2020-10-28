@@ -58,12 +58,12 @@ After reviewing the package, I was pleased to be able to view the shiny app simp
 
 ### Documentation
 
-- **Installation instructions:** There were installation instructions found in the README file.
-- **Vignette(s):** The vignette does run successfully in my local machine. It provides information such as what the app does and guidelines. However, there is no information on demonstrating the use of datasets and how a user can work with the data to visualize certain analytics themselves.
-- **Function documentation:** There was documentation for only 1 exported function, the launch_app() function. The ui and server functions had not been documented properly and were not included in the “man” folder, thus there was no documentation available for these functions in the R help.
-- **Examples:** For the launch_app() documentation, there were no examples provided. However, the function runs successfully on my local machine. I could not run the other functions that were created because they had not been properly exported in the R script.
+- [x] **Installation instructions:** There were installation instructions found in the README file.
+- [x] **Vignette(s):** The vignette does run successfully in my local machine. It provides information such as what the app does and guidelines. However, there is no information on demonstrating the use of datasets and how a user can work with the data to visualize certain analytics themselves.
+- [ ] **Function documentation:** There was documentation for only 1 exported function, the launch_app() function. The ui and server functions had not been documented properly and were not included in the “man” folder, thus there was no documentation available for these functions in the R help.
+- [ ] **Examples:** For the launch_app() documentation, there were no examples provided. However, the function runs successfully on my local machine. I could not run the other functions that were created because they had not been properly exported in the R script.
 
 ### Functionality
 
-- **Installation:** The installation of the package succeeds on my local machine.
-- **Automated tests:** The tests implemented did not run as it should. The creator commented on one of the test files, thus a test on the ui-side function could not be carried out in the way it should. The test file for the server-side function was not changed from the default setting and it did not match the function created by the author.
+- [x] **Installation:** The installation of the package succeeds on my local machine.
+- [ ] **Automated tests:** The tests implemented did not run as it should. The creator commented on one of the test files, thus a test on the ui-side function could not be carried out in the way it should. The test file for the server-side function was not changed from the default setting and it did not match the function created by the author.
