@@ -1,12 +1,12 @@
 ---
-title: "Blog 3: Self-reflection of my COVID-19 Shiny app"
+title: "Blog 4: Peer evaluation of my colleague's R package"
 description: |
-  Reviewing my own Shiny app.
+  Reviewing the "covidpkg" R package.
 author:
   - name: Justin Thomas 
     affiliation: ETC5523, Monash University
     affiliation_url: https://cwd.numbat.space/
-date: 10-14-2020
+date: 10-28-2020
 output:
   distill::distill_article:
     self_contained: false
@@ -28,47 +28,42 @@ library(DT)
 
 # Prelude
 
-Peer review is often conducted on assignments to provide valuable, yet constructive feedback to help one improve their learning and refine their skills. However, it is far more difficult for one to judge their own work and review it themselves, but this task is equally as important, if not more important than peer review. Thus, in this blog, you will read about my critique for my own work.
+Peer review is often conducted on assignments to provide valuable, yet constructive feedback to help one improve their learning and refine their skills. Thus, in this blog, you will read my evaluation of my colleague's work.
 
-# Introducing my Shiny app
+# Introducing the R package
 
-The Shiny app I created is called "COVID-19 rattles the World" and the purpose of this app is to demonstrate how the coronavirus has impacted the world. Through line graphs, I have demonstrated how the distribution of confirmed cases and daily cases in many countries have varied from February - October. I have included a summary statistics section where a table is displayed to show the total cases and deaths for countries. I also dedicated a section to focus on Australia and used a map to show how the number of cases differentiate across states. 
+The “covidpkg” is a package created by Yuqi Wang. This package provides me (the user) an opportunity to launch a shiny application and interact with it to visualize the impact of coronavirus in terms of cases and deaths in Australia and Canada.
 
-My app has an interactive interface, whereby any user can change input selections based on options I have provided so that they can enjoy a more hands-on experience! Some of the input selections on my app are:
+# Evaluation
 
-- **Selection of states for the Australia section** : a user can select any of the 8 Australian    states to see how the confirmed case count varies across states.
-- **Selection of countries** : a user can select any country to visualize its distribution of      cumulative cases and daily cases.
-- **Selection of a date range** : a user can select a date range to see how case counts have       changed during a specific time period in a particular country.
+### What did I think this package would do? Did it do it?
 
+Before launching the application, I expected the package to show me how the number of cases differentiated between Australia and Canada. In addition, I was expecting that the author of the package would take it one step further and show the distribution of covid cases in all the states of Australia and Canada. After launching the application, the package showed me the distribution of cases and deaths between Australia and Canada on a line chart across a time period from February 2020 to October 2020. It also displayed a table that allowed me to change dates and visualize how the cumulative case and death count have been increasing during the specific time period I selected. Unfortunately, there was no breakdown of case and death count by states as I had hoped for.
 
-# Self Review
+### Are there improvements that could be made to the code? Are there improvements that could be made to the shiny app inside the package? Is the documentation sufficient to get started?
 
-### What I did well?
+There are improvements that can be made to the code that launched the application. For example, instead of reading in the data in the app.R file, the creator could create an “extdata” folder in the same directory as the “inst” folder. This will help them read in the data into the “data-raw” folder as well. Currently, the creator has 2 of the same data files in two separate folders; each file taking up a space of 2.6 Mb. Although this is a relatively small size, if a larger data file had been used, it would take a much longer time to load. Thus, it would be more efficient to just load in the data to one folder, hence my suggestion to create the “extdata” folder. 
 
-When creating my app, I designed the tabs to be placed at the top of the website, this way the user can navigate easily across tabs after reading through the content. It is my opinion that having tabs at the top of the website helps a user as it is center aligned which compliments their eye level. Additionally, I've also given a brief introduction for each section so the user knows what to expect in that particular section. 
+Additionally, improvements that could be made inside the shiny app is that the creator could include sections. As of now, there is a lot being displayed on just a single webpage, thus having different sections by using a ‘tabPanel’ could give a better layout and flow to the content on the app. 
 
-My map and line graphs cover the full width of the web page so it is wide enough for the data to be understood properly. The line graphs are not crowded or squished. Lastly, I have ensured that the heading for the line charts automatically update when a new country and/or a new date range is selected by the user. This helps the user understand what the data represents just by looking at the heading.
+Unfortunately, there isn’t sufficient information in the documentation to get started. The creator has given documentation on the datasets and launch_app() function used, however the information provided could be improved. For example, in the datasets documentation, information about the variables and what they represent could be included. For the launch_app() function, an example of how to use this function would be beneficial for the user, especially if the user is not literate in programming language. Lastly, the user has written an R script for their ui and server functions, but this was not documented properly and as such I was unable to view the documentation.
 
-### What can I improve on?
+### What I've learned from reviewing the package?
 
-Although I designed the charts and map to take up the full width of the web page, this has compromised the flow of reading for one section. For example in the "Cases in Australia" section, initially the line graph is hidden. Because I set the map to take up the full width, the line graph relating to the confirmed cases for each Australian state appears below the map and is not visible right away. This compromises the flow of reading for the user because they have to scroll down below the map to see this graph. This is something I can improve on. I should assign a specific value for the width of the map and line graph so they can both be easily seen. It would have been a better user interface if I had displayed the line graph next to the map.
+After reviewing the package, I was pleased to be able to view the shiny app simply by just using a launch_app() function. The app itself has interactive features like selecting a date range and selecting a country. This allowed me to compare the number of cases between Australia and Canada. I learnt something interesting in regards to border policies implemented by both countries. Australia has a stricter border policy whereby nobody can enter or exit the country unless for very special and serious circumstances. Whereas Canada allowed people to exit the country but prohibited entry of travelers from high-risk countries. The difference in border control is perhaps why Australia only recorded about 27,000 cases and 895 deaths whereas Canada has over 168,000 cases and 9504 deaths.
 
-I should also include line breaks between text and the graphs so it doesn't seem so crowded.
+# Appendix
 
-### Some things I'd like to add that is plausible
+## Package Review
 
-I would like to add an option to display multiple countries for my table. Currently, the table only gives the user the option to display one country. By having multiple countries appear in the table, the user can make comparisons between countries.
+### Documentation
 
-Additionally, I'd like to include extra information, such as summary statistics to appear in the box when a user clicks on an Australian state as indicated by the blue circle on the map. 
+- **Installation instructions:** There were installation instructions found in the README file.
+- **Vignette(s):** The vignette does run successfully in my local machine. It provides information such as what the app does and guidelines. However, there is no information on demonstrating the use of datasets and how a user can work with the data to visualize certain analytics themselves.
+- **Function documentation:** There was documentation for only 1 exported function, the launch_app() function. The ui and server functions had not been documented properly and were not included in the “man” folder, thus there was no documentation available for these functions in the R help.
+- **Examples:** For the launch_app() documentation, there were no examples provided. However, the function runs successfully on my local machine. I could not run the other functions that were created because they had not been properly exported in the R script.
 
-Lastly, portraying recovery rates for each country in the form of a choropleth map would be useful. This is something that would improve the user experience because they can visualize which regions or continents have a bad or good recovery rate. Certain continents with a bad recovery rate may be due to poor medical facilities or simply because it has nations that are considered underdeveloped. The reasons for why a recovery rate are bad or good are subjective and open for the user to think about, hence improving their experience.
+### Functionality
 
-### Some things I’d like to add that cannot be done yet due to limitation in data or technology
-
-Virtual reality is a current technological practice being developed by many companies, some even achieving a prototype version. However it is not fully operational yet and not in public use. Because of this limitation, I'd like to, but cannot add a section in my app where users can use VR headsets to look around the artificial world, move around in it, and interact with virtual features or items (Wikipedia, 2020). In this section, I can provide a number of simulated environments during COVID-19 such as shopping at a grocery store, experiencing lockdown lifestyle, walking through empty streets, digital learning and many more.
-
-I feel this would add a unique experience for my user as it allows them to virtually "live" in that country by moving around these simulated environments through a point-of-view (POV) angle. The user may experience a completely different lifestyle compared to their home country and this can evoke feelings of sympathy, empathy or even gratitude.
-
-# References
-
-Wikipedia. (2020, October 7). *Virtual Reality*. Retrieved October 14, 2020, from https://en.wikipedia.org/wiki/Virtual_reality
+- **Installation:** The installation of the package succeeds on my local machine.
+- **Automated tests:** The tests implemented did not run as it should. The creator commented on one of the test files, thus a test on the ui-side function could not be carried out in the way it should. The test file for the server-side function was not changed from the default setting and it did not match the function created by the author.

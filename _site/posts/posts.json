@@ -1,5 +1,21 @@
 [
   {
+    "path": "posts/blog4/",
+    "title": "Blog 4: Peer evaluation of my colleague's R package",
+    "description": "Reviewing the \"covidpkg\" R package.",
+    "author": [
+      {
+        "name": "Justin Thomas",
+        "url": {}
+      }
+    ],
+    "date": "2020-10-28",
+    "categories": [],
+    "preview": {},
+    "last_modified": "2020-10-28T09:35:37+08:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/blog3/",
     "title": "Blog 3: Self-reflection of my COVID-19 Shiny app",
     "description": "Reviewing my own Shiny app.",
