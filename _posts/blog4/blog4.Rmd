@@ -66,4 +66,5 @@ After reviewing the package, I was pleased to be able to view the shiny app simp
 ### Functionality
 
 - [x] **Installation:** The installation of the package succeeds on my local machine.
+- [x] **Functionality:** The functional claims have been confirmed.
 - [ ] **Automated tests:** The tests implemented did not run as it should. The creator commented on one of the test files, thus a test on the ui-side function could not be carried out in the way it should. The test file for the server-side function was not changed from the default setting and it did not match the function created by the author.
