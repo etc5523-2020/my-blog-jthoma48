@@ -1,0 +1,74 @@
+---
+title: "Blog 3: Self-reflection of my COVID-19 Shiny app"
+description: |
+  Reviewing my own Shiny app.
+author:
+  - name: Justin Thomas 
+    affiliation: ETC5523, Monash University
+    affiliation_url: https://cwd.numbat.space/
+date: 10-14-2020
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, eval=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(gridExtra)
+library(plotly)
+library(readr)
+library(DT)
+
+# Learn more about creating blogs with Distill at:
+# https://rstudio.github.io/distill/blog.html
+
+```
+
+# Prelude
+
+Peer review is often conducted on assignments to provide valuable, yet constructive feedback to help one improve their learning and refine their skills. However, it is far more difficult for one to judge their own work and review it themselves, but this task is equally as important, if not more important than peer review. Thus, in this blog, you will read about my critique for my own work.
+
+# Introducing my Shiny app
+
+The Shiny app I created is called "COVID-19 rattles the World" and the purpose of this app is to demonstrate how the coronavirus has impacted the world. Through line graphs, I have demonstrated how the distribution of confirmed cases and daily cases in many countries have varied from February - October. I have included a summary statistics section where a table is displayed to show the total cases and deaths for countries. I also dedicated a section to focus on Australia and used a map to show how the number of cases differentiate across states. 
+
+My app has an interactive interface, whereby any user can change input selections based on options I have provided so that they can enjoy a more hands-on experience! Some of the input selections on my app are:
+
+- **Selection of states for the Australia section** : a user can select any of the 8 Australian    states to see how the confirmed case count varies across states.
+- **Selection of countries** : a user can select any country to visualize its distribution of      cumulative cases and daily cases.
+- **Selection of a date range** : a user can select a date range to see how case counts have       changed during a specific time period in a particular country.
+
+
+# Self Review
+
+### What I did well?
+
+When creating my app, I designed the tabs to be placed at the top of the website, this way the user can navigate easily across tabs after reading through the content. It is my opinion that having tabs at the top of the website helps a user as it is center aligned which compliments their eye level. Additionally, I've also given a brief introduction for each section so the user knows what to expect in that particular section. 
+
+My map and line graphs cover the full width of the web page so it is wide enough for the data to be understood properly. The line graphs are not crowded or squished. Lastly, I have ensured that the heading for the line charts automatically update when a new country and/or a new date range is selected by the user. This helps the user understand what the data represents just by looking at the heading.
+
+### What can I improve on?
+
+Although I designed the charts and map to take up the full width of the web page, this has compromised the flow of reading for one section. For example in the "Cases in Australia" section, initially the line graph is hidden. Because I set the map to take up the full width, the line graph relating to the confirmed cases for each Australian state appears below the map and is not visible right away. This compromises the flow of reading for the user because they have to scroll down below the map to see this graph. This is something I can improve on. I should assign a specific value for the width of the map and line graph so they can both be easily seen. It would have been a better user interface if I had displayed the line graph next to the map.
+
+I should also include line breaks between text and the graphs so it doesn't seem so crowded.
+
+### Some things I'd like to add that is plausible
+
+I would like to add an option to display multiple countries for my table. Currently, the table only gives the user the option to display one country. By having multiple countries appear in the table, the user can make comparisons between countries.
+
+Additionally, I'd like to include extra information, such as summary statistics to appear in the box when a user clicks on an Australian state as indicated by the blue circle on the map. 
+
+Lastly, portraying recovery rates for each country in the form of a choropleth map would be useful. This is something that would improve the user experience because they can visualize which regions or continents have a bad or good recovery rate. Certain continents with a bad recovery rate may be due to poor medical facilities or simply because it has nations that are considered underdeveloped. The reasons for why a recovery rate are bad or good are subjective and open for the user to think about, hence improving their experience.
+
+### Some things I’d like to add that cannot be done yet due to limitation in data or technology
+
+Virtual reality is a current technological practice being developed by many companies, some even achieving a prototype version. However it is not fully operational yet and not in public use. Because of this limitation, I'd like to, but cannot add a section in my app where users can use VR headsets to look around the artificial world, move around in it, and interact with virtual features or items (Wikipedia, 2020). In this section, I can provide a number of simulated environments during COVID-19 such as shopping at a grocery store, experiencing lockdown lifestyle, walking through empty streets, digital learning and many more.
+
+I feel this would add a unique experience for my user as it allows them to virtually "live" in that country by moving around these simulated environments through a point-of-view (POV) angle. The user may experience a completely different lifestyle compared to their home country and this can evoke feelings of sympathy, empathy or even gratitude.
+
+# References
+
+Wikipedia. (2020, October 7). *Virtual Reality*. Retrieved October 14, 2020, from https://en.wikipedia.org/wiki/Virtual_reality
